@@ -19,7 +19,7 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/presensi/cetakrekap" target="_blank" method="POST">
+                        <form action="/presensi/cetakrekap" id="frmRekap" target="_blank" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-12">
@@ -90,3 +90,36 @@
     </div>
 </div>
 @endsection
+
+@push('myscript')
+<script>
+    $ (function() {
+        $("#frmRekap").submit(function(e) {
+            var bulan = $("#bulan").val();
+            var tahun = $("#tahun").val();
+            
+            if (bulan == "") {
+                Swal.fire({
+                    title: 'Warning !',
+                    text: 'Bulan harus dipilih',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    $("#bulan").focus();
+                });
+                return false;
+            } else if (tahun == "") {
+                Swal.fire({
+                    title: 'Warning !',
+                    text: 'Tahun harus dipilih',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    $("#tahun").focus();
+                });
+                return false;
+            }
+        });
+    });
+</script>
+@endpush
