@@ -47,13 +47,37 @@ class IzincutiController extends Controller
             'keterangan' => $keterangan
         ];
 
-        $simpan = DB::table('pengajuan_izin')->insert($data);
+        //Cek sudah absen / belum
 
-        if($simpan) {
-            return redirect('/presensi/izin')->with(['success'=>'Data berhasil disimpan']);
+        $cekpresensi = DB::table('presensi')
+        ->whereBetween('tgl_presensi', [$tgl_izin_dari, $tgl_izin_sampai]);
+
+        //Cek sudah melakukan pengajuan lain / belum
+        $cekpengajuan = DB::table('pengajuan_izin')
+        ->whereRaw('"' . $tgl_izin_dari . '" BETWEEN tgl_izin_dari AND tgl_izin_sampai');
+
+        $datapresensi = $cekpresensi->get();
+
+        if ($cekpresensi->count() > 0) {
+            $blacklistdate = "";
+            foreach($datapresensi as $d) {
+                $blacklistdate .= date('d-m-Y', strtotime($d->tgl_presensi)) . ",";
+            }
+            return redirect('/presensi/izin')->with(['error'=>'Tidak bisa melakukan pengajuan pada tanggal, ' . $blacklistdate . 
+            ' tanggal sudah digunakan pada pengajuan lain / sudah melakukan presensi, silahkan ganti ke tanggal yang lain']);
+        } else if ($cekpengajuan->count() > 0) {
+            return redirect('/presensi/izin')->with(['error'=>'Tidak bisa melakukan pengajuan pada tanggal tersebut, 
+            tanggal sudah digunakan sebelumnya']);
         } else {
-            return redirect('/presensi/izin')->with(['error'=>'Data gagal disimpan']);
+            $simpan = DB::table('pengajuan_izin')->insert($data);
+    
+            if($simpan) {
+                return redirect('/presensi/izin')->with(['success'=>'Data berhasil disimpan']);
+            } else {
+                return redirect('/presensi/izin')->with(['error'=>'Data gagal disimpan']);
+            }
         }
+
     }
 
     public function edit($kode_izin) 

@@ -68,8 +68,11 @@
     var currYear = (new Date()).getFullYear();
 
     $(document).ready(function() {
+        var today = new Date();
+        
         $(".datepicker").datepicker({
-            format: "yyyy-mm-dd"    
+            format: "yyyy-mm-dd",
+            minDate: today
         });
 
         function loadjumlahhari() {
