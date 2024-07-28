@@ -44,7 +44,7 @@
             </div>
 
             <div class="custom-file-upload" id="fileUpload1" style="height: 100px !important">
-                <input type="file" name="skd" id="fileuploadInput" accept=".png, .jpg, .jpeg">
+                <input type="file" name="skd" id="fileuploadInput" accept=".png, .jpg, .jpeg, .pdf">
                 <label for="fileuploadInput">
                     <span>
                         <strong>

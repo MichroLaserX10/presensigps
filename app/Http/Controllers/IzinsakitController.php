@@ -52,10 +52,12 @@ class IzinsakitController extends Controller
         //Cek sudah absen / belum
 
         $cekpresensi = DB::table('presensi')
-        ->whereBetween('tgl_presensi', [$tgl_izin_dari, $tgl_izin_sampai]);
+        ->whereBetween('tgl_presensi', [$tgl_izin_dari, $tgl_izin_sampai])
+        ->where('nik', $nik);
 
         //Cek sudah melakukan pengajuan lain / belum
         $cekpengajuan = DB::table('pengajuan_izin')
+        ->where('nik', $nik)
         ->whereRaw('"' . $tgl_izin_dari . '" BETWEEN tgl_izin_dari AND tgl_izin_sampai');
 
         $datapresensi = $cekpresensi->get();

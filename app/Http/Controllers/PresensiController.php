@@ -386,7 +386,7 @@ class PresensiController extends Controller
     {
         $query = Pengajuanizin::query();
         $query->select('kode_izin', 'tgl_izin_dari', 'tgl_izin_sampai', 'pengajuan_izin.nik', 'nama_lengkap', 'jabatan', 'status', 
-        'status_approved', 'keterangan');
+        'status_approved', 'keterangan', 'doc_skd');
         $query->join('karyawan', 'pengajuan_izin.nik', '=', 'karyawan.nik');
         if(!empty($request->dari) && !empty($request->sampai)) {
             $query->whereBetween('tgl_izin_dari', [$request->dari, $request->sampai]);
