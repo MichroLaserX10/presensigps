@@ -261,7 +261,7 @@ class PresensiController extends Controller
     {
         $namabulan = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober",
          "November", "Desember"];
-        $karyawan = DB::table('karyawan')->orderBy('nama_lengkap')->get();
+        $karyawan = DB::table('karyawan')->orderBy('nik')->get();
         return view('presensi.laporan', compact('namabulan', 'karyawan'));
     }
 
@@ -366,7 +366,7 @@ class PresensiController extends Controller
                 }
             );
 
-            $query->orderBy('nama_lengkap');
+            $query->orderBy('nik');
             $rekap = $query->get();
 
             //dd($rekap);

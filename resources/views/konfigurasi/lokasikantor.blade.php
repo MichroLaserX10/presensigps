@@ -30,7 +30,7 @@
                             {{ Session::get('warning') }}
                         </div>
                         @endif
-                        <form action="/konfigurasi/updatelokasikantor" method="POST">
+                        <form action="/konfigurasi/updatelokasikantor" id="frmKonfigurasi" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-12">
@@ -98,3 +98,36 @@
     </div>
 </div>
 @endsection
+
+@push('myscript')
+<script>
+    $ (function() {
+        $("#frmKonfigurasi").submit(function(e) {
+            var lokasi_kantor = $("#lokasi_kantor").val();
+            var radius = $("#radius").val();
+            
+            if (lokasi_kantor == "") {
+                Swal.fire({
+                    title: 'Warning !',
+                    text: 'Lokasi Kantor harus di isi',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    $("#lokasi_kantor").focus();
+                });
+                return false;
+            } else if (radius == "") {
+                Swal.fire({
+                    title: 'Warning !',
+                    text: 'Radius harus di isi',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    $("#radius").focus();
+                });
+                return false;
+            }
+        });
+    });
+</script>
+@endpush

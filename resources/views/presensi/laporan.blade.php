@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="row mt-2">
-                                <div class="col-12">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <button type="submit" name="cetak" class="btn btn-primary w-100">
                                             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  
@@ -78,7 +78,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                {{-- <div class="col-6">
+                                <div class="col-6">
                                     <div class="form-group">
                                         <button type="submit" name="exportexcel" class="btn btn-success w-100">
                                             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  
@@ -92,7 +92,7 @@
                                             Export to Excel
                                         </button>
                                     </div>
-                                </div> --}}
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -14,10 +14,7 @@
   <!-- Set page size here: A5, A4 or A3 -->
   <!-- Set also "landscape" if you need -->
     <style>
-        @page {
-            size: A4
-        }
-        
+
         #title {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 18px;
@@ -36,6 +33,12 @@
             width: 100%;
             margin-top: 20px;
             border-collapse: collapse;
+            page-break-inside: auto;
+        }
+
+        .tabelpresensi tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
         }
 
         .tabelpresensi tr th {
@@ -55,11 +58,17 @@
             width: 40px;
             height: 40px;
         }
+
+        body.A4.landscape .sheet {
+            width: 297mm !important;
+            height: auto !important;
+        }
     </style>
 </head>
 
 <!-- Set "A5", "A4" or "A3" for class name -->
 <!-- Set also "landscape" if you need -->
+
 <body class="A4 landscape">
     <?php
         if (!function_exists('selisih')) {

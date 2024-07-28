@@ -187,7 +187,7 @@
                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                         </svg>
                         </span>
-                        <input type="text" id="nama_dept" value="" class="form-control" name="nama_dept" 
+                        <input type="text" id="nama_dept_input" value="" class="form-control" name="nama_dept" 
                         placeholder="Nama Departemen">
                       </div>
                 </div>
@@ -279,61 +279,15 @@
             });
         });
 
-        $("#frmKaryawan").submit(function() {
-            var nik = $("#nik").val();
-            var nama_lengkap = $("#nama_lengkap").val();
-            var jabatan = $("#jabatan").val();
-            var no_hp = $("#no_hp").val();
-            var kode_dept = $("frmKaryawan").find("#kode_dept").val();
-            if (nik == "") {
-                //alert('NIK wajib diisi');
-                Swal.fire({
-                    title: 'Warning !',
-                    text: 'NIK wajib diisi',
-                    icon: 'warning',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    $("#nik").focus();
-                });
+        $("#frmDepartemen").submit(function() {
+            var kode_dept = $("#kode_dept").val();
+            var nama_dept = $("#nama_dept_input").val();
+            //alert(nama_dept);
+            if (kode_dept == "") {
                 
-                return false;
-            } else if (nama_lengkap == "") {
                 Swal.fire({
                     title: 'Warning !',
-                    text: 'Nama wajib diisi',
-                    icon: 'warning',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    $("#nama_lengkap").focus();
-                });
-
-                return false;
-            } else if (jabatan == "") {
-                Swal.fire({
-                    title: 'Warning !',
-                    text: 'Jabatan wajib diisi',
-                    icon: 'warning',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    $("#jabatan").focus();
-                });
-
-                return false;
-            } else if (no_hp == "") {
-                Swal.fire({
-                    title: 'Warning !',
-                    text: 'No HP wajib diisi',
-                    icon: 'warning',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    $("#no_hp").focus();
-                });
-                
-                return false;
-            } else if (kode_dept == "") {
-                Swal.fire({
-                    title: 'Warning !',
-                    text: 'Departemen wajib diisi',
+                    text: 'Kode Departemen wajib diisi',
                     icon: 'warning',
                     confirmButtonText: 'OK'
                 }).then((result) => {
@@ -341,7 +295,18 @@
                 });
                 
                 return false;
-            }
+            } else if (nama_dept == "") {
+                Swal.fire({
+                    title: 'Warning !',
+                    text: 'Nama Departemen wajib diisi',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    $("#nama_dept").focus();
+                });
+
+                return false;
+            } 
         });
     });
 </script>
